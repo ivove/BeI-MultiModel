@@ -147,12 +147,38 @@ ClassMethod NewCategory(Name As %String) As BeI.Category
     return cat
 }
 
-ClassMethod NewAttribute(Name As %String) As BeI.Attribute
+ClassMethod NewAttribute(Name As %String, sourceId As %String) As BeI.Attribute
 {
-    set attr = ##class(BeI.Attribute).%New()
-    set attr.Name = Name
+    set attr = ##class(BeI.Attribute).GetAttributeByName(Name)
+    if attr = $$$NULLOREF { 
+        set attr = ##class(BeI.Attribute).%New() 
+        set attr.Name = Name
+    }
+    if attr.SourceIds.Find(sourceId,"") = "" {
+        do attr.SourceIds.Insert(sourceId)
+    }
     do attr.%Save()
     return attr
+}
+
+ClassMethod CreateAttributeValue(attributeName As %String, valueName As %String, value As %String, sourceValue As %String) As %Status
+{
+    set result = $$$NULLOREF
+    set attr = ##class(BeI.Attribute).GetAttributeByName(attributeName)
+    if attr '= $$$NULLOREF {
+        set result = ##class(BeI.AttributeValue).GetAttributeValue(attr.%Id(),valueName,value)
+        if result = $$$NULLOREF { 
+            set result = ##class(BeI.AttributeValue).%New()
+            set result.Attribute = attr
+            set result.Name = valueName
+            set result.Value = value
+        }
+        if result.SourceValues.Find(sourceValue,"") '= "" {
+            do result.SourceValues.Insert(sourceValue)
+        }
+        do result.%Save()
+    }
+    return result
 }
 
 ClassMethod ShowBitstring(bs) As %String

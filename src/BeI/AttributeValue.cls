@@ -7,9 +7,13 @@ Property Name As %String;
 
 Property Value As %String;
 
+Property SourceValues As list Of %String;
+
 Property ProductCount As %Numeric;
 
 Property BitStringPosition As %Numeric;
+
+Index idxName On Name;
 
 ClassMethod AttributeValuesWithoutPosition() As %Library.ArrayOfObjects
 {
@@ -24,6 +28,16 @@ ClassMethod AttributeValuesWithoutPosition() As %Library.ArrayOfObjects
         }
     }
     &SQL(CLOSE noPosAttrVal)
+    return result
+}
+
+ClassMethod GetAttributeValue(attributeId As %Integer, name As %String, value As %String) As %Status
+{
+    set result = $$$NULLOREF
+    &SQL(SELECT id into:id FROM BeI.AttributeValue WHERE Attribute->Id=:attributeId AND Name=:name AND Value=:value)
+    if 'SQLCODE,id '= "" {
+        set result = ##class(BeI.AttributeValue).%OpenId(id)
+    }
     return result
 }
 
@@ -57,6 +71,9 @@ Storage Default
 </Value>
 <Value name="6">
 <Value>BitStringPosition</Value>
+</Value>
+<Value name="7">
+<Value>SourceValues</Value>
 </Value>
 </Data>
 <DataLocation>^BeI.AttributeValueD</DataLocation>

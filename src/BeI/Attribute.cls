@@ -3,6 +3,10 @@ Class BeI.Attribute Extends %Persistent
 
 Property Name As %String;
 
+Property SourceIds As list Of %String;
+
+Index idxName On Name;
+
 Method GetValues() As %Library.ArrayOfObjects
 {
     kill list
@@ -37,6 +41,14 @@ ClassMethod GetAttributes() As %ArrayOfObjects
     return result
 }
 
+ClassMethod GetAttributeByName(name As %String) As BeI.Attribute
+{
+    set result = $$$NULLOREF
+    &SQL(SELECT id into:id FROM BeI.Attribute WHERE Name = :name)
+    if 'SQLCODE,id'="" { set result = ##class(BeI.Attribute).%OpenId(id) }
+    return result
+}
+
 Storage Default
 {
 <Data name="AttributeDefaultData">
@@ -45,6 +57,9 @@ Storage Default
 </Value>
 <Value name="2">
 <Value>Name</Value>
+</Value>
+<Value name="3">
+<Value>SourceIds</Value>
 </Value>
 </Data>
 <DataLocation>^BeI.AttributeD</DataLocation>
