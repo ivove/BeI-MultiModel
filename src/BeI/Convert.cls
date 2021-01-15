@@ -28,7 +28,11 @@ ClassMethod BuildCategories() As %Status [ Abstract ]
 }
 
 /// this method should be used to create the products. products in the filter an the sourcedatabase should have a 1 on 1 mapping
-/// A product can be created using the classmethod ##class(BeI.Utils).NewProduct()
+/// A product can be created using the classmethod ##class(BeI.Utils).NewProduct(name,price,categoryId,attributes)
+/// where: name: the name of the product
+/// price: the product price
+/// categoryId: the id of the category/family in the source database
+/// attributes: a list of strings containing the sourcevalues (used for the creation of the attribute values)
 ClassMethod BuildProducts() As %Status [ Abstract ]
 {
 }

@@ -186,6 +186,13 @@ ClassMethod NewAttributeValue(attributeName As %String, valueName As %String, va
     return result
 }
 
+ClassMethod NewProduct(name As %String, price As %Numeric, categoryId As %String, attributes As %ListOfDataTypes) As %Status
+{
+    set result = ##class(BeI.Product).%New()
+
+    return result
+}
+
 ClassMethod ShowBitstring(bs) As %String
 {
     set result = ""

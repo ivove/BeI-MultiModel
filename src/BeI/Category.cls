@@ -17,6 +17,13 @@ ClassMethod GetCategoryByName(name As %String) As BeI.Category
     return result
 }
 
+ClassMethod GetCategoryBySourceId(sourceId As %String) As BeI.Category
+{
+    set result = $$$NULLOREF
+    &SQL()
+    return result
+}
+
 ClassMethod GetAllCategories() As %Library.ArrayOfObjects
 {
     set result = ##class(%ArrayOfObjects).%New(),i = 0
