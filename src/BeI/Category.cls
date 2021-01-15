@@ -5,7 +5,17 @@ Property Name As %String;
 
 Property Attributes As array Of BeI.Attribute;
 
+Property SourceIds As array Of %String;
+
 Property BitStringPosition As %Numeric;
+
+ClassMethod GetCategoryByName(name As %String) As BeI.Category
+{
+    set result = $$$NULLOREF
+    &SQL(SELECT id INTO :id FROM BeI.Category WHERE Name=:name)
+    if 'SQLCODE,id '= "" { set result = ##class(BeI.Category).%OpenId(id) }
+    return result
+}
 
 ClassMethod GetAllCategories() As %Library.ArrayOfObjects
 {
@@ -61,6 +71,11 @@ Storage Default
 <Value name="3">
 <Value>BitStringPosition</Value>
 </Value>
+</Data>
+<Data name="SourceIds">
+<Attribute>SourceIds</Attribute>
+<Structure>subnode</Structure>
+<Subscript>"SourceIds"</Subscript>
 </Data>
 <DataLocation>^BeI.CategoryD</DataLocation>
 <DefaultData>CategoryDefaultData</DefaultData>

@@ -138,21 +138,26 @@ ClassMethod BuildSorts() As %Status
     return result
 }
 
-ClassMethod NewCategory(Name As %String) As BeI.Category
+ClassMethod NewCategory(name As %String, sourceId As %String) As BeI.Category
 {
-   
-    set cat = ##class(BeI.Category).%New()
-    set cat.Name = Name
+    set cat = ##class(BeI.Category).GetAttributeByName(name)
+    if cat = $$$NULLOREF {
+        set cat = ##class(BeI.Category).%New()
+        set cat.Name = name
+    }
+    if cat.SourceIds.Find(sourceId,"") = "" {
+        do cat.SourceIds.Insert(sourceId)
+    }
     do cat.%Save()
     return cat
 }
 
-ClassMethod NewAttribute(Name As %String, sourceId As %String) As BeI.Attribute
+ClassMethod NewAttribute(name As %String, sourceId As %String) As BeI.Attribute
 {
-    set attr = ##class(BeI.Attribute).GetAttributeByName(Name)
+    set attr = ##class(BeI.Attribute).GetAttributeByName(name)
     if attr = $$$NULLOREF { 
         set attr = ##class(BeI.Attribute).%New() 
-        set attr.Name = Name
+        set attr.Name = name
     }
     if attr.SourceIds.Find(sourceId,"") = "" {
         do attr.SourceIds.Insert(sourceId)
@@ -161,7 +166,7 @@ ClassMethod NewAttribute(Name As %String, sourceId As %String) As BeI.Attribute
     return attr
 }
 
-ClassMethod CreateAttributeValue(attributeName As %String, valueName As %String, value As %String, sourceValue As %String) As %Status
+ClassMethod NewAttributeValue(attributeName As %String, valueName As %String, value As %String, sourceValue As %String) As %Status
 {
     set result = $$$NULLOREF
     set attr = ##class(BeI.Attribute).GetAttributeByName(attributeName)
