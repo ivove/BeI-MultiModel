@@ -17,11 +17,15 @@ ClassMethod GetCategoryByName(name As %String) As BeI.Category
     return result
 }
 
+/// Get the Category by its legacy id (the id in the source database)
 ClassMethod GetCategoryBySourceId(sourceId As %String) As BeI.Category
 {
-    set result = $$$NULLOREF
-    &SQL()
-    return result
+    Set result = $$$NULLOREF    
+    &SQL(SELECT category INTO :id FROM BeI.Category_SourceIds WHERE SourceIds=:soucerId)
+    if 'SQLCODE,id '=' "" {
+        set result = ##class(BeI.Category).%OpenId(id)
+    }
+    Return result
 }
 
 ClassMethod GetAllCategories() As %Library.ArrayOfObjects

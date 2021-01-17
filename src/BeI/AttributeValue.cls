@@ -41,6 +41,17 @@ ClassMethod GetAttributeValue(attributeId As %Integer, name As %String, value As
     return result
 }
 
+/// get the attribute value by its source value; this is the value in the source database
+ClassMethod GetAttributeValueBySourceValue(sourceValue As %String) As BeI.AttributeValue
+{
+    Set result = $$$NULLOREF
+    &SQL(SELECT attributevalue INTO :id FROM BeI.AttributeValue_SourceValues where sourcevalues=:sourceValue)
+    if 'SQLCODE,id '="" {
+        set result = ##class(BeI.AttributeValue).%OpenId(id)
+    }
+    Return result
+}
+
 Method GetDynamicAttributeValue() As %DynamicObject
 {
     set result = {}

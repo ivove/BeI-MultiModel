@@ -186,10 +186,21 @@ ClassMethod NewAttributeValue(attributeName As %String, valueName As %String, va
     return result
 }
 
-ClassMethod NewProduct(name As %String, price As %Numeric, categoryId As %String, attributes As %ListOfDataTypes) As %Status
+ClassMethod NewProduct(name As %String, price As %Numeric, categoryId As %String, attributes As %ListOfDataTypes, sourceId As %String) As %Status
 {
-    set result = ##class(BeI.Product).%New()
-
+    set result = ##class(BeI.Product).GetProductBySourceId(sourceId)
+    if result = $$$NULLOREF {
+        set result = ##class(BeI.Product).%New()
+        set result.SourceId = sourceId
+    }
+    set result.Name = name
+    set result.Price = price
+    set result.Category = ##class(BeI.Category).GetCategoryBySourceId(categoryId)
+    For i = 1:1:attributes.Count() {
+        set value = attributes.GetAt(i)
+        do result.Attributes.SetAt(##class(BeI.AttributeValue).GetAttributeValueBySourceValue(value),result.Attributes.Count())
+    }
+    do result.%Save()
     return result
 }
 

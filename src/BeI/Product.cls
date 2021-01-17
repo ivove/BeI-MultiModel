@@ -11,6 +11,8 @@ Property BitString As %String(POPORDER = 4);
 
 Property Attributes As array Of BeI.AttributeValue(POPORDER = 5, POPSPEC = ".PopulateAttributes()");
 
+Property SourceId As %String;
+
 ClassMethod GetProductsByCategoryId(categoryId As %String) As %ArrayOfObjects
 {
     set result = ##class(%ArrayOfObjects).%New(),i = 0
@@ -41,6 +43,26 @@ ClassMethod GetAllProducts() As %ArrayOfObjects
     }
     &SQL(CLOSE allProds)
     return result
+}
+
+ClassMethod GetProductByName(name As %String) As BeI.Product
+{
+    Set result = $$$NULLOREF
+    &SQL(SELECT id INTO :id FROM BeI.Product WHERE name=:name)
+    if 'SQLCODE,id '= "" {
+        set result = ##class(BeI.Product).%OpenId(id)
+    }
+    Return result
+}
+
+ClassMethod GetProductBySourceId(sourceId As %String) As BeI.Product
+{
+    Set result = $$$NULLOREF
+    &SQL(SELECT id INTO :id FROM BeI.Product WHERE SourceId=:sourceId)
+    if 'SQLCODE,id '= "" {
+        set result = ##class(BeI.Product).%OpenId(id)
+    }
+    Return result
 }
 
 Method SetBitstring() As %Status
@@ -124,6 +146,9 @@ Storage Default
 </Value>
 <Value name="5">
 <Value>Price</Value>
+</Value>
+<Value name="6">
+<Value>SourceId</Value>
 </Value>
 </Data>
 <DataLocation>^BeI.ProductD</DataLocation>
