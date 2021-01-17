@@ -31,10 +31,10 @@ ClassMethod AttributeValuesWithoutPosition() As %Library.ArrayOfObjects
     return result
 }
 
-ClassMethod GetAttributeValue(attributeId As %Integer, name As %String, value As %String) As %Status
+ClassMethod GetAttributeValue(attributeId As %Integer, name As %String) As %Status
 {
     set result = $$$NULLOREF
-    &SQL(SELECT id into:id FROM BeI.AttributeValue WHERE Attribute->Id=:attributeId AND Name=:name AND Value=:value)
+    &SQL(SELECT id into:id FROM BeI.AttributeValue WHERE Attribute->Id=:attributeId AND Name=:name)
     if 'SQLCODE,id '= "" {
         set result = ##class(BeI.AttributeValue).%OpenId(id)
     }
@@ -50,6 +50,14 @@ ClassMethod GetAttributeValueBySourceValue(sourceValue As %String) As BeI.Attrib
         set result = ##class(BeI.AttributeValue).%OpenId(id)
     }
     Return result
+}
+
+Method CalculateValue()
+{
+    set attributeId = ..Attribute.%Id(),nextValue = 1
+    &SQL(SELECT Value into:value FROM BeI.AttributeValue WHERE Attribute->Id=:attributeId ORDER BY value DESC)
+    if 'SQLCODE { set nextValue = value + 1 }
+    set ..Value = nextValue
 }
 
 Method GetDynamicAttributeValue() As %DynamicObject

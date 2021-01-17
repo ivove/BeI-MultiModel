@@ -166,17 +166,20 @@ ClassMethod NewAttribute(name As %String, sourceId As %String) As BeI.Attribute
     return attr
 }
 
-ClassMethod NewAttributeValue(attributeName As %String, valueName As %String, value As %String, sourceValue As %String) As %Status
+ClassMethod NewAttributeValue(attributeName As %String, valueName As %String, value As %String = "", sourceValue As %String) As %Status
 {
     set result = $$$NULLOREF
     set attr = ##class(BeI.Attribute).GetAttributeByName(attributeName)
     if attr '= $$$NULLOREF {
-        set result = ##class(BeI.AttributeValue).GetAttributeValue(attr.%Id(),valueName,value)
+        set result = ##class(BeI.AttributeValue).GetAttributeValue(attr.%Id(),valueName)
         if result = $$$NULLOREF { 
             set result = ##class(BeI.AttributeValue).%New()
             set result.Attribute = attr
             set result.Name = valueName
-            set result.Value = value
+            if value '="" { set result.Value = value }
+            if result.Value = "" {
+                do result.CalculateValue()
+            }
         }
         if result.SourceValues.Find(sourceValue,"") '= "" {
             do result.SourceValues.Insert(sourceValue)
