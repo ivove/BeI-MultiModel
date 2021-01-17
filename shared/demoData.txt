@@ -1,0 +1,75 @@
+fam-1-small TV
+fam-2-medium TV
+fam-3-large TV
+fam-4-Laptop
+fam-5-Tablet
+
+attr-1-Screen Size
+attr-2-Energy Class
+attr-3-CPU
+attr-4-OS
+attr-5-Resolution
+attr-6-Keyboardlayout
+attr-7-VideoChip
+attr-8-Screen Formfactor
+attr-9-Pannel Type
+attr-10-Backlight
+attr-11-Memory
+attr-12-storrage
+attr-13-Brand
+
+art-1-OLED55CX6LA Zwart-1195-3
+lnk-1-1-55inch
+lnk-1-2-A
+lnk-1-8-flat
+lnk-1-5-3840x2160
+lnk-1-9-OLED
+lnk-1-13-LG
+
+art-2-QLED Series Q80T-949-3
+lnk-2-1-55inch
+lnk-2-2-B
+lnk-2-13-Samsung
+lnk-2-8-flat
+lnk-2-5-3840x2160
+lnk-2-9-LCD
+
+art-3-32LM6300PLA Zwart-279-2
+lnk-3-1-32inch
+lnk-3-2-A
+lnk-3-13-LG
+lnk-3-8-flat
+lnk-3-5-1920x1080
+lnk-3-9-LCD
+
+art-4-TU7020 43" Zwart-395-3
+lnk-4-1-43inch
+lnk-4-2-A+
+lnk-4-13-Samsung
+lnk-4-8-flat
+lnk-4-5-3840x2160
+lnk-4-9-LCD
+
+art-5-UE32T5300 Zwart-349-2
+lnk-5-1-32inch
+lnk-5-2-A+
+lnk-5-13-Samsung
+lnk-5-8-flat
+lnk-5-5-1920x1080
+lnk-5-9-LCD
+
+art-6-24PFS6805 Zwart-225-1
+lnk-6-1-24inch
+lnk-6-2-A
+lnk-6-13-Philips
+lnk-6-8-flat
+lnk-6-5-1920x1080
+lnk-6-9-LCD
+
+art-7-Series 5 UE22D5000 Zwart-264-1
+lnk-7-1-22inch
+lnk-7-2-A
+lnk-7-13-Samsung
+lnk-7-8-flat
+lnk-7-5-1920x1080
+lnk-7-9-LCD
