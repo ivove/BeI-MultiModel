@@ -28,6 +28,10 @@ To setup this code follow these steps:
    ``` 
    git clone https://github.com/ivove/BeI-MultiModel.git
    ```
+   And switch to the release branch for version 1.1.0
+   ```
+   git checkout R_1.1.0
+   ´´´
 2. Create a folder "files" under the root directory of the repo you just cloned 
    ``` 
    cd BeI-Multimodel #only do this if you haven't already entered the directory
@@ -60,15 +64,15 @@ this should start a webserver listening on port 3000 and automaticly opening a b
 
 The following image briefly shows the interface. With the posibility to 
 * filter on some filters (for exemple screen size)
-   ![demo-filter](https://raw.githubusercontent.com/ivove/BeI-MultiModel/main/images/demo-filter.gif)
+   ![demo-filter](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-filter.gif)
 * search on the name
-   ![demo-search](https://raw.githubusercontent.com/ivove/BeI-MultiModel/main/images/demo-search.gif)   
+   ![demo-search](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-search.gif)   
 * change the sortorder
-   ![demo-sort](https://raw.githubusercontent.com/ivove/BeI-MultiModel/main/images/demo-sort.gif)
+   ![demo-sort](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-sort.gif)
 * use the pageing to change the page
-   ![demo](https://raw.githubusercontent.com/ivove/BeI-MultiModel/main/images/demo-page.gif)
+   ![demo](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-page.gif)
 * setting the page size
-   ![demo](https://raw.githubusercontent.com/ivove/BeI-MultiModel/main/images/demo-pagesize.gif)
+   ![demo](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-pagesize.gif)
 
 
 ## Something extra: running the watcher for cls
