@@ -31,7 +31,7 @@ To setup this code follow these steps:
    And switch to the release branch for version 1.1.0
    ```
    git checkout R_1.1.0
-   ´´´
+   ```
 2. Create a folder "files" under the root directory of the repo you just cloned 
    ``` 
    cd BeI-Multimodel #only do this if you haven't already entered the directory
