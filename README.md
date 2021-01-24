@@ -28,9 +28,9 @@ To setup this code follow these steps:
    ``` 
    git clone https://github.com/ivove/BeI-MultiModel.git
    ```
-   next check out the 1.1.0 release
+   next check out the 1.1.1 release
    ```
-   git checkout R_1.1.0
+   git checkout R_1.1.1
    ```
 2. Create a folder "files" under the root directory of the repo you just cloned 
    ``` 
