@@ -74,6 +74,17 @@ The following image briefly shows the interface. With the posibility to
 * setting the page size
    ![demo](https://raw.githubusercontent.com/ivove/BeI-MultiModel/R_1.1.0/images/demo-pagesize.gif)
 
+## Multi-model parts:
+
+* Key-Value:
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/API.cls#L104
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/Agent.cls#L137
+* SQL:
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/Agent.cls#L127
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/Product.cls#L22
+* Object:
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/API.cls#L197
+    - https://github.com/ivove/BeI-MultiModel/blob/298c20a8ae833d334d7b8702e71ef4198c9e1355/src/BeI/Agent.cls#L114
 
 ## Something extra: running the watcher for cls
 
