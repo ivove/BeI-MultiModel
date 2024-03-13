@@ -1,0 +1,4 @@
+zn "USER"
+D $system.OBJ.ImportDir("/src/",,"c",.errorlog, 1)
+d ##class(BeI.Installer).Install()
+h
